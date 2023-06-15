@@ -1,26 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { Suspense, memo } from 'react';
+import routes from './router/router';
+import { Link, useRoutes } from 'react-router-dom';
+export default memo(function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <Link to="/discover">发现</Link>
+        <Link to="/mine">我的</Link>
+        <Link to="/download">下载</Link>
+        <Link to="/friend">朋友</Link>
+      </div>
+      <Suspense>{useRoutes(routes)}</Suspense>
     </div>
   );
-}
-
-export default App;
+});

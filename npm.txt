@@ -1,0 +1,1 @@
+npm i @craco/craco@alpha  craco-less@alpha   normalize.css  react-router-dom   react-redux    @reduxjs/toolkit axios    styled-components@5.3.10  
