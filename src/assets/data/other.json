@@ -1,0 +1,31 @@
+[
+  {
+    "title": "我的主页",
+    "type": "path",
+    "link": "/user/home"
+  }, {
+    "title": "我的消息",
+    "type": "path",
+    "link": "/user/level"
+  }, {
+    "title": "我的等级",
+    "type": "path",
+    "link": "/user/private"
+  }, {
+    "title": "VIP会员",
+    "type": "path",
+    "link": "/user/myvipweb"
+  }, {
+    "title": "个人设置",
+    "type": "path",
+    "link": "/user/update"
+  },{
+    "title": "实名认证",
+    "type": "link",
+    "link": "/user/update"
+  },{
+    "title": "退出",
+    "type": "path",
+    "link": "/user/logoOut"
+  }
+]

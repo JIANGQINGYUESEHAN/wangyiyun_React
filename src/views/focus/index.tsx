@@ -8,8 +8,7 @@ interface IProps {
 
 const Focus: FC<IProps> = () => {
   return <div> Focus
-    <Button type="primary">Primary Button</Button>
-    <Button type="dashed">Dashed Button</Button>
+
   </div>;
 };
 
