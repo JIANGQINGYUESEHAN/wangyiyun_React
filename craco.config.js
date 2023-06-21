@@ -1,16 +1,26 @@
-let path = require('path');
-const CracoLessPlugin = require('craco-less');
-let resolve = function (src) {
-  return path.resolve(__dirname, src);
-};
+const path = require('path')
+const CracoLessPlugin = require('craco-less')
+
+const resolve = (dir) => path.resolve(__dirname, dir)
 
 module.exports = {
-  plugins: [{ plugin: CracoLessPlugin }],
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            modifyVars: { '@primary-color': '#1DA57A' },
+            javascriptEnabled: true,
+          },
+        },
+      }
+    }
+  ],
   webpack: {
     alias: {
-      '@': resolve('src'),
-      components: resolve('src/components'),
-      utils: resolve('src/utils')
+      '@': resolve('src')
     }
   }
-};
+}
+

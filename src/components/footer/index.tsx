@@ -5,8 +5,8 @@ interface IProps {
   children?: ReactNode
 }
 
-const Recommend: FC<IProps> = () => {
-  return <div> Recommend</div>
+const Footer: FC<IProps> = () => {
+  return <div> Footer</div>
 }
 
-export default memo(Recommend)
+export default memo(Footer)

@@ -3,7 +3,7 @@ import { lazy } from 'react';
 
 let Discover = lazy(() => import('@/views/discover'));
 let Mine = lazy(() => import('@/views/mine'));
-let Friend = lazy(() => import('@/views/friend'));
+let Focus = lazy(() => import('@/views/focus'));
 let Download = lazy(() => import('@/views/download'));
 let Disc = lazy(() => import('@/views/discover/SecondaryComponents/disc'));
 let Playlist = lazy(
@@ -57,8 +57,8 @@ const routes: RouteObject[] = [
     element: <Mine />
   },
   {
-    path: '/friend',
-    element: <Friend />
+    path: '/focus',
+    element: <Focus />
   },
   {
     path: '/download',

@@ -1,16 +1,17 @@
 import React, { Suspense, memo } from 'react';
 import routes from './router/router';
 import { Link, useRoutes } from 'react-router-dom';
+import Head from './components/head';
+import Footer from './components/footer';
 export default memo(function App() {
   return (
     <div>
+      <Head />
+
       <div>
-        <Link to="/discover">发现</Link>
-        <Link to="/mine">我的</Link>
-        <Link to="/download">下载</Link>
-        <Link to="/friend">朋友</Link>
+        <Suspense>{useRoutes(routes)}</Suspense>
       </div>
-      <Suspense>{useRoutes(routes)}</Suspense>
+      <Footer />
     </div>
   );
 });

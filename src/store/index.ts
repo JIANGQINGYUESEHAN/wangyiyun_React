@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import DiscoverReducer from './module/discover';
-import FriendReducer from './module/friend/reducer';
+
 import {
   TypedUseSelectorHook,
   shallowEqual,
@@ -10,7 +10,7 @@ import {
 let store = configureStore({
   reducer: {
     discover: DiscoverReducer,
-    friend: FriendReducer
+
   }
 });
 
