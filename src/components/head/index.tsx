@@ -27,9 +27,9 @@ const Header: FC<IProps> = () => {
   }
   function ShowOther(item: any, index: any) {
     if (item.type === 'path') {
-      return <NavLink to={item.link}>{item.title}</NavLink>
+      return <NavLink className="listOther" to={item.link}>{item.title}</NavLink>
     } else {
-      return <a href={item.link}>{item.title}</a>
+      return <a className="listOther" href={item.link}>{item.title}</a>
     }
   }
 
@@ -59,10 +59,10 @@ const Header: FC<IProps> = () => {
 
       </div>
       <div className='other'>
-        <ul>
+        <ul className='ul'>
           {other.map((item, index) => {
             return (
-              <li key={index}>{ShowOther(item, index)}</li>
+              <li className='list' key={index}>{ShowOther(item, index)}</li>
             )
           })}
         </ul>

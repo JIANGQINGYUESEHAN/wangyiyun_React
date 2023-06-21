@@ -67,41 +67,58 @@ const HeaderWrapper = styled.div`
     border: 1px solid grey;
     height: 32px;
 
-    font-size:12px ;
-    text-align:center;
+    font-size: 12px;
+    text-align: center;
     line-height: 32px;
     border-radius: 20px;
   }
-  .development_center:hover{
+  .development_center:hover {
     border: 1px solid #ffffff;
   }
-  .center_a{
+  .center_a {
     color: #ffffff;
     text-decoration: none;
-
   }
-  .avatar{
+  .avatar {
     border: 1px solid #ffffff;
     width: 48px;
     height: 30px;
     border-radius: 50%;
     overflow: hidden;
-
   }
-  .avatar_imag{
+  .avatar_imag {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     overflow: hidden;
   }
-  .other{
+  .other {
     width: 160px;
-    height: 222px;
-    background-color: #000;
-    position: absolute;
-    right: 210px;
-    top: 53px;
-  }
 
+    background-color: #353535;
+    position: absolute;
+    right: 200px;
+    top: 53px;
+
+  }
+  .ul{
+    margin: 10px 0px ;
+  }
+  .list {
+    display: block;
+
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    background-color: #353535;
+    line-height: 40px;
+  }
+  .list:hover{
+    background-color:#282C34 ;
+  }
+  .listOther {
+    color: #ffffff;
+    font-size: 14px;
+  }
 `;
 export default HeaderWrapper;
