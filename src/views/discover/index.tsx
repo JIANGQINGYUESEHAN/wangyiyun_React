@@ -1,25 +1,27 @@
 import React, { memo } from 'react';
 import type { FC, ReactNode } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
+import DiscoverWrapper from './styled';
+import { discoverMenu } from '@/assets/data/local-data'
 interface IProps {
   children?: ReactNode;
 }
 
+
 const Discover: FC<IProps> = () => {
   return (
-    <>
-      <div>
-        <Link to="/discover/recommend">推荐</Link>
-        <Link to="/discover/rank">排行榜</Link>
-        <Link to="/discover/playlist">歌单</Link>
-        <Link to="/discover/radio">主播电台</Link>
-        <Link to="/discover/singer">歌手</Link>
-        <Link to="/discover/disc">新碟上架</Link>
+    <DiscoverWrapper>
+      <div className='discover'>
+        {discoverMenu.map((item, index) => {
+          return <NavLink key={index} className="Link" to={item.link}>{item.title}</NavLink>
+        })}
       </div>
       <div>
-        <Outlet />{' '}
+        <Outlet />
       </div>
-    </>
+
+    </DiscoverWrapper>
+
   );
 };
 

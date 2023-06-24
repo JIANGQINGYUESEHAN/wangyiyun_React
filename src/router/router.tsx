@@ -20,7 +20,7 @@ let Rank = lazy(() => import('@/views/discover/SecondaryComponents/rank'));
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to="/discover" />
+    element: <Navigate to="/discover/recommend" />
   },
   {
     path: '/discover',

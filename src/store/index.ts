@@ -1,15 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import DiscoverReducer from './module/discover';
-
+import RecommendReducer from './module/recommend'
 import {
   TypedUseSelectorHook,
   shallowEqual,
   useDispatch,
   useSelector
 } from 'react-redux';
+
+
 let store = configureStore({
   reducer: {
     discover: DiscoverReducer,
+    recommend: RecommendReducer
 
   }
 });

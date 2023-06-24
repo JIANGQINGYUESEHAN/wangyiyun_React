@@ -71,23 +71,23 @@ export const discoverMenu = [
   },
   {
     title: '排行榜',
-    link: '/discover/ranking'
+    link: '/discover/rank'
   },
   {
     title: '歌单',
-    link: '/discover/songs'
+    link: '/discover/playlist'
   },
   {
     title: '主播电台',
-    link: '/discover/djradio'
+    link: '/discover/radio'
   },
   {
     title: '歌手',
-    link: '/discover/artist'
+    link: '/discover/singer'
   },
   {
     title: '新碟上架',
-    link: '/discover/album'
+    link: '/discover/disc'
   }
 ]
 

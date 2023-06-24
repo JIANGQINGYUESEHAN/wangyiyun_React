@@ -5,7 +5,7 @@ const HeaderWrapper = styled.div`
     height: 70px;
     background-color: ${(props) => props.theme.color.primary};
     border-bottom: 1px solid #000;
-    padding: 0 250px;
+    padding: 0 240px;
     display: flex;
     box-sizing: border-box;
     position: relative;
@@ -26,7 +26,7 @@ const HeaderWrapper = styled.div`
     display: inline-block;
     font-size: 14px;
     color: #ffffff;
-    width: 60px; /* 设置固定宽度 */
+    width: 70px; /* 设置固定宽度 */
     line-height: 70px;
     height: 70px;
     padding: 0px 10px; /* 设置间隔 */
@@ -47,7 +47,7 @@ const HeaderWrapper = styled.div`
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid red;
+    border-bottom: 8px solid #CE180D;
   }
 
   .Active {
@@ -115,10 +115,15 @@ const HeaderWrapper = styled.div`
   }
   .list:hover{
     background-color:#282C34 ;
+    border-bottom: 1px solid black;
   }
   .listOther {
     color: #ffffff;
     font-size: 14px;
   }
+  .diver{
+  height: 4px;
+  background-color: #C8130C;
+}
 `;
 export default HeaderWrapper;
