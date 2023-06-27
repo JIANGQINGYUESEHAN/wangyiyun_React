@@ -1,6 +1,6 @@
 import { WYYDispatch, WYYUserSelector } from '@/store';
 import { fetchBannerDataAction } from '@/store/module/recommend';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useState, useRef } from 'react';
 import type { FC, ReactNode } from 'react';
 import BannersWrapper from './styled';
 
@@ -16,67 +16,63 @@ const Banner: FC<IProps> = () => {
 
   const { banners } = WYYUserSelector((state) => {
     return {
-      banners: state.recommend.banners,
+      banners: state.recommend.banners
     };
   });
 
-  function Turn(banners: Array<any>) {
-    let i: any;
-    // 长度为奇数
-    if (banners.length % 2 === 1) {
-      i = Math.floor(banners.length / 2) + 1;
-    }
-    // 长度为偶数
-    if (banners.length % 2 === 0) {
-      i = banners.length / 2;
-    }
-    return i;
-  }
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const timeRef = useRef<any>(null);
+  const [image, setImage] = useState<any[]>([]);
 
-  let [index, setIndex] = useState(0);
-  const [initialized, setInitialized] = useState(false);
   useEffect(() => {
-    if (!initialized) {
-      setInitialized(true);
-      return;
-    }
+    let str = banners[0];
+    let Image = [...banners];
+    Image.push(str);
+    setImage([...Image]);
+  }, [banners]);
 
-    let time = setInterval(() => {
-      interval(banners.length);
-    }, 1000);
-
-    return () => {
-      clearInterval(time);
-    };
-  }, [initialized]);
-
-  let num = Turn(banners);
-
-  function interval(length: number) {
-    num++;
-
-
-    if (num >= length) {
-      num = 0;
-    }
-
-    setIndex(num);
-
+  function startFun() {
+    timeRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        let nextIndex = prevIndex + 1;
+        if (nextIndex === image.length) {
+          nextIndex = 1;
+        }
+        return nextIndex;
+      });
+    }, 3000);
   }
 
+  useEffect(() => {
+    startFun();
+    return () => {
+      clearInterval(timeRef.current);
+    };
+  }, [image.length]);
 
-  return <BannersWrapper>
-    <div className='main'>
-      <ul className='ul'>
-        {banners.map((item, inx) => {
-          return <li key={inx} className='list'>
-            <img src={item?.imageUrl} alt="" key={inx} className='image' />
-          </li>
-        })}
-      </ul>
-    </div>
-
-  </BannersWrapper>;
-};
+  return (
+    <BannersWrapper>
+      <div className='content'>
+        <ul className='ul'>
+          {image.map((item, index) => (
+            <li
+              className='list'
+              key={index}
+              style={currentIndex === 1 ? {
+                transform: `translateX(-400px)`,
+                // 设置动画的持续时间
+              } : {
+                transform: `translateX(${(-400 * (currentIndex))}px)`,
+                transition: 'transform 3s ease' // 设置动画的持续时间
+              }}
+            >
+              <img src={item?.imageUrl} key={index} alt="" className='image' />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </BannersWrapper>
+  );
+}
 
 export default memo(Banner);

@@ -1,47 +1,39 @@
 import styled from 'styled-components';
 const BannersWrapper = styled.div`
-.main{
+  .content {
+    height: 300px;
+    background-color: aliceblue;
+    bottom: 20px 0px;
+    overflow: hidden;
+  }
 
-  margin:40px auto;
-  background-color: aliceblue;
-  height: 360px;
-  width: 1504px;
+  .ul {
+    margin: 10px auto;
+    height: 300px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rebeccapurple;
+    overflow: hidden;
+    position: relative;
+  }
 
-  overflow: hidden;
-}
-.ul{
-  margin: 60px 0;
- display: flex;
- transform: translateX(-1000px);
+  .list {
+    flex-shrink: 0;
+    width: 400px;
+    height: 280px;
+    border: 1px solid black;
+
+  //  transform: translateX(-1600px);
 
 
-
-}
-.list{
-  flex-shrink: 0;
-  width: 500px;
-  height: 240px;
-  border: 1px solid black;
-  border-radius: 20px ;
-  overflow: hidden;
-}
-.list:nth-child(4){
-  border: 1px solid red;
-  transform: scale(1.3);
-  z-index: 99;
-}
-.active{
-  border: 1px solid red;
-  transform: scale(1.3);
-  z-index: 99;
-}
-
+  }
 .image{
-  width: 500px;
-  height: 240px;
+    width: 400px;
+    height: 280px;
 }
 
 
+`;
 
-`
-export default BannersWrapper
+export default BannersWrapper;
