@@ -21,41 +21,16 @@ const Banner: FC<IProps> = () => {
     };
   });
 
-  const currentIndexRef = useRef(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const bannerRef = useRef<any>(null);
   const [image, setImage] = useState<any[]>([]);
   const interval = 2000;
   //定时器
   const timeRef = useRef<any>(null);
-
-  // function startfun() {
-  //   currentIndexRef.current = (currentIndexRef.current + 1) % image.length;
-  //   const currentIndex = currentIndexRef.current;
-
-  //   let len = image.length;
-  //   let _n = currentIndex;
-
-  //   if (currentIndex == len - 1) {
-
-  //     bannerRef!.current!.style.left = '-500px';
-  //     currentIndexRef.current = 1
-
-  //   }
-
-  //   if (_n < 0) {
-  //     if (bannerRef.current) {
-  //       bannerRef.current.style.left = `-${currentIndex * 500}px`;
-  //     }
-  //   }
-  //   if (currentIndex !== 0) {
-  //     bannerRef!.current!.style.left = `-${currentIndex * 500}px`;
-  //     bannerRef!.current!.style.transition = `left 1s ease`;
-  //   }
-  // }
   function startfun(n: number) {
     var len = image.length;//4
-    var _n = currentIndexRef.current + n;
-    if (_n === len + 1) {
+    var _n = currentIndex + n;
+    if (_n === len) {
       bannerRef!.current!.css({
         left: 0
       });
@@ -67,8 +42,8 @@ const Banner: FC<IProps> = () => {
       });
       _n = len - 1;
     }
+    setCurrentIndex(_n)
 
-    console.log(_n);
 
     bannerRef!.current!.animate({
       left: -800 * _n
@@ -76,11 +51,18 @@ const Banner: FC<IProps> = () => {
   }
 
 
-  console.log(currentIndexRef.current);
+
 
   function autoPlay() {
     clearInterval(timeRef.current);
     timeRef.current = setInterval((item, index) => {
+      setCurrentIndex((prevIndex) => {
+        let nextIndex = prevIndex + 1;
+        if (nextIndex === image.length) {
+          nextIndex = 1;
+        }
+        return nextIndex;
+      });
       startfun(1);
     }, interval);
   }
