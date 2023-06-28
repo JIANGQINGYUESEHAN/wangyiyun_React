@@ -11,12 +11,12 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.36",
-    "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
     "@types/styled-components": "^5.1.26",
     "antd": "^5.6.2",
     "axios": "^1.4.0",
     "craco-less": "^2.1.0-alpha.0",
+    "jquery": "^3.7.0",
     "normalize.css": "^8.0.1",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
@@ -54,6 +54,8 @@
     ]
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
+    "@types/react": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "eslint": "^8.42.0",

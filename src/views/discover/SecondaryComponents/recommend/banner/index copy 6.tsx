@@ -1,10 +1,9 @@
 import { WYYDispatch, WYYUserSelector } from '@/store';
 import { fetchBannerDataAction } from '@/store/module/recommend';
 import React, { memo, useEffect, useState, useRef } from 'react';
-import type { FC, MutableRefObject, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import BannersWrapper from './styled';
 
-import $ from 'jquery';
 interface IProps {
   children?: ReactNode;
 }
@@ -22,73 +21,28 @@ const Banner: FC<IProps> = () => {
   });
 
   const currentIndexRef = useRef(0);
-  const bannerRef = useRef<any>(null);
+  const bannerRef = useRef<HTMLDivElement | null>(null);
   const [image, setImage] = useState<any[]>([]);
   const interval = 2000;
-  //定时器
   const timeRef = useRef<any>(null);
 
-  // function startfun() {
-  //   currentIndexRef.current = (currentIndexRef.current + 1) % image.length;
-  //   const currentIndex = currentIndexRef.current;
-
-  //   let len = image.length;
-  //   let _n = currentIndex;
-
-  //   if (currentIndex == len - 1) {
-
-  //     bannerRef!.current!.style.left = '-500px';
-  //     currentIndexRef.current = 1
-
-  //   }
-
-  //   if (_n < 0) {
-  //     if (bannerRef.current) {
-  //       bannerRef.current.style.left = `-${currentIndex * 500}px`;
-  //     }
-  //   }
-  //   if (currentIndex !== 0) {
-  //     bannerRef!.current!.style.left = `-${currentIndex * 500}px`;
-  //     bannerRef!.current!.style.transition = `left 1s ease`;
-  //   }
-  // }
-  function startfun(n: number) {
-    var len = image.length;//4
-    var _n = currentIndexRef.current + n;
-    if (_n === len + 1) {
-      bannerRef!.current!.css({
-        left: 0
-      });
-      _n = 1;
-    }
-    if (_n < 0) {
-      bannerRef!.current!.css({
-        left: -3200
-      });
-      _n = len - 1;
-    }
-
-    console.log(_n);
-
-    bannerRef!.current!.animate({
-      left: -800 * _n
-    }, 1000);
+  function startfun() {
+    currentIndexRef.current = (currentIndexRef.current + 1) % image.length;
+    const currentIndex = currentIndexRef.current;
+    bannerRef!.current!.style.left = `-${currentIndex * 500}px`;
+    bannerRef!.current!.style.transition = `left 1s ease`;
   }
-
 
   console.log(currentIndexRef.current);
 
   function autoPlay() {
     clearInterval(timeRef.current);
-    timeRef.current = setInterval((item, index) => {
-      startfun(1);
+    timeRef.current = setInterval(() => {
+      startfun();
     }, interval);
   }
 
-  //开启定时器
   useEffect(() => {
-    var $bannerInner = $<any>(".banners");
-    bannerRef!.current = $bannerInner[0] as HTMLDivElement;
     autoPlay();
   }, [image.length]);
 
@@ -102,7 +56,7 @@ const Banner: FC<IProps> = () => {
   return (
     <BannersWrapper>
       <div className="content">
-        <div className="banners" >
+        <div className="banners" ref={bannerRef}>
           {image.map((item, index) => {
             return (
               <div key={index} className="list">
