@@ -9,7 +9,6 @@ const BannersWrapper = styled.div`
     display: flex;
     justify-content: center;
     border-radius: 10px;
-    position: relative;
   }
 .image_div{
   height: 400px;
@@ -63,32 +62,6 @@ const BannersWrapper = styled.div`
   }
   .arrow:hover {
     background-color: #282c34;
-  }
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color:gray;
-    opacity: 0.9;
-    z-index: 999;
-    cursor: pointer;
-    margin: 0 10px;
-    display: block;
-  }
-
-  .active{
-    background-color:red;
-  }
-  .dot:hover{
-    background-color: black;
-  }
-  .dotUl {
-    position: absolute;
-    left: 1155px;
-    top: 370px;
-    display: flex;
-    width: 300px;
-    height: 15px;
   }
 
 

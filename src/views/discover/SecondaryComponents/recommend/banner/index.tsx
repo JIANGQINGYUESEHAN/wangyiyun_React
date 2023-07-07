@@ -5,15 +5,18 @@ import type { FC, MutableRefObject, ReactNode } from 'react';
 import BannersWrapper from './styled';
 
 import $ from 'jquery';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 interface IProps {
   children?: ReactNode;
 }
 
 const Banner: FC<IProps> = () => {
+  const [image, setImage] = useState<any[]>([]);
   const dispatch = WYYDispatch();
   useEffect(() => {
     dispatch(fetchBannerDataAction());
   }, []);
+  const timeRef = useRef<any>(null);
 
   const { banners } = WYYUserSelector((state) => {
     return {
@@ -21,83 +24,100 @@ const Banner: FC<IProps> = () => {
     };
   });
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const bannerRef = useRef<any>(null);
-  const [image, setImage] = useState<any[]>([]);
-  const interval = 2000;
-  //定时器
-  const timeRef = useRef<any>(null);
-  function startfun(n: number) {
-    var len = image.length;//4
-    var _n = currentIndex + n;
-    if (_n === len) {
-      bannerRef!.current!.css({
-        left: 0
-      });
-      _n = 1;
-    }
-    if (_n < 0) {
-      bannerRef!.current!.css({
-        left: -3200
-      });
-      _n = len - 1;
-    }
-    setCurrentIndex(_n)
-
-
-    bannerRef!.current!.animate({
-      left: -800 * _n
-    }, 1000);
-  }
-
-
-
-
-  function autoPlay() {
-    clearInterval(timeRef.current);
-    timeRef.current = setInterval((item, index) => {
-      setCurrentIndex((prevIndex) => {
-        let nextIndex = prevIndex + 1;
-        if (nextIndex === image.length) {
-          nextIndex = 1;
-        }
-        return nextIndex;
-      });
-      startfun(1);
-    }, interval);
-  }
-
-  //开启定时器
   useEffect(() => {
-    var $bannerInner = $<any>(".banners");
-    bannerRef!.current = $bannerInner[0] as HTMLDivElement;
-    autoPlay();
-  }, [image.length]);
-
-  useEffect(() => {
-    let str = banners[0];
     let Image = [...banners];
-    Image.push(str);
+
     setImage([...Image]);
   }, [banners]);
 
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  //左点击
+  function right() {
+    console.log("right");
+
+    setCurrentIndex(prevIndex => prevIndex === image.length - 1 ? 0 : prevIndex + 1);
+
+  }
+
+  function left() {
+    setCurrentIndex(prevIndex => prevIndex === 0 ? image.length - 1 : prevIndex - 1);
+  }
+
+  function dotClick(index: number) {
+    let diff = Math.max(currentIndex, index) - Math.min(currentIndex, index);
+
+    const delay = 2000; // 每次状态更新的延迟时间，单位为毫秒
+    const step = currentIndex < index ? 1 : -1; // 步长，用于确定是向左还是向右移动
+
+    let i = 0;
+    let currentIterationIndex = currentIndex; // 当前迭代索引
+    const intervalId = setInterval(() => {
+      if (i < diff) {
+        i++;
+        currentIterationIndex += step;
+        setCurrentIndex(currentIterationIndex);
+      } else {
+        clearInterval(intervalId); // 清除定时器
+      }
+    }, delay);
+  }
+
+  //轮播
+  useEffect(() => {
+    startFun();
+    return () => {
+      clearInterval(timeRef.current);
+    };
+  }, [image.length]);
+
+  function startFun() {
+    timeRef.current = setInterval(() => {
+      right()
+
+    }, 5000);
+  }
+
+
+  function done() {
+    clearInterval(timeRef.current)
+  }
   return (
     <BannersWrapper>
       <div className="content">
-        <div className="banners" >
-          {image.map((item, index) => {
+        <div className="image_div" onMouseOver={() => done()} onMouseLeave={() => startFun()}>
+          {image.map((slide, index) => {
             return (
-              <div key={index} className="list">
-                <img
-                  src={item?.imageUrl}
-                  key={index}
-                  alt=""
-                  className="image"
-                />
+              <div
+                className={index === currentIndex ? 'slide active' : 'slide'}
+                key={index}
+              >
+                {index === currentIndex && (
+                  <img src={slide?.imageUrl} alt="" className="image" />
+                )}
               </div>
             );
           })}
         </div>
+
+        <ul className="dotUl">
+          {image.map((item, index) => {
+            return (
+              <li
+                className={index == currentIndex ? 'active dot' : 'dot'}
+                key={index}
+                onClick={() => dotClick(index)}
+              ></li>
+            );
+          })}
+        </ul>
+      </div>
+      <div className="arrow arrow_left" onClick={() => left()}>
+        <LeftOutlined />
+      </div>
+      <div className="arrow arrow_right" onClick={() => right()}>
+        <RightOutlined />
       </div>
     </BannersWrapper>
   );
