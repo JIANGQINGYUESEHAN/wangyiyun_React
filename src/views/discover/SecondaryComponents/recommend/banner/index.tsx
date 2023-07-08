@@ -1,7 +1,7 @@
 import { WYYDispatch, WYYUserSelector } from '@/store';
 import { fetchBannerDataAction } from '@/store/module/recommend';
 import React, { memo, useEffect, useState, useRef } from 'react';
-import type { FC, MutableRefObject, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import BannersWrapper from './styled';
 
 import $ from 'jquery';
@@ -30,19 +30,20 @@ const Banner: FC<IProps> = () => {
     setImage([...Image]);
   }, [banners]);
 
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   //左点击
   function right() {
-    console.log("right");
 
-    setCurrentIndex(prevIndex => prevIndex === image.length - 1 ? 0 : prevIndex + 1);
-
+    setCurrentIndex((prevIndex) =>
+      prevIndex === image.length - 1 ? 0 : prevIndex + 1
+    );
   }
 
   function left() {
-    setCurrentIndex(prevIndex => prevIndex === 0 ? image.length - 1 : prevIndex - 1);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? image.length - 1 : prevIndex - 1
+    );
   }
 
   function dotClick(index: number) {
@@ -74,19 +75,30 @@ const Banner: FC<IProps> = () => {
 
   function startFun() {
     timeRef.current = setInterval(() => {
-      right()
-
+      right();
     }, 5000);
   }
 
-
   function done() {
-    clearInterval(timeRef.current)
+    clearInterval(timeRef.current);
+  }
+
+  let bgImageUrl
+  if (currentIndex >= 0 && banners.length > 0) {
+    bgImageUrl = banners[currentIndex].imageUrl + '?imageView&blur=40x20'
   }
   return (
     <BannersWrapper>
-      <div className="content">
-        <div className="image_div" onMouseOver={() => done()} onMouseLeave={() => startFun()}>
+      <div className="content"
+        style={{
+          background: `url('${bgImageUrl}') center center / 6000px`
+        }}
+      >
+        <div
+          className="image_div"
+          onMouseOver={() => done()}
+          onMouseLeave={() => startFun()}
+        >
           {image.map((slide, index) => {
             return (
               <div
@@ -112,13 +124,15 @@ const Banner: FC<IProps> = () => {
             );
           })}
         </ul>
+
+        <div className="arrow arrow_left" onClick={() => left()}>
+          <LeftOutlined />
+        </div>
+        <div className="arrow arrow_right" onClick={() => right()}>
+          <RightOutlined />
+        </div>
       </div>
-      <div className="arrow arrow_left" onClick={() => left()}>
-        <LeftOutlined />
-      </div>
-      <div className="arrow arrow_right" onClick={() => right()}>
-        <RightOutlined />
-      </div>
+
     </BannersWrapper>
   );
 };
