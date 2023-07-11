@@ -16,7 +16,7 @@ const BannersWrapper = styled.div`
   display: flex;
   border-radius: 10px;
   justify-content: center;
-
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 
 }
 .image {

@@ -1,4 +1,4 @@
-import { getBanners, getRecommendBody } from '@/service/static/recommend';
+import { getBanners, getNewAlbum, getRecommendBody } from '@/service/static/recommend';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchBannerDataAction = createAsyncThunk(
@@ -19,6 +19,13 @@ export const fetchRecommendBody = createAsyncThunk('hotrecommend', async (arg, {
 
 })
 
+export const fetchRecommendAlbum = createAsyncThunk('album', async (arg, { dispatch }) => {
+  let res = await getNewAlbum()
+
+  dispatch(changeNewAlbumAction(res.albums))
+
+})
+
 
 interface IRecommendState {
   banners: any[]
@@ -32,7 +39,6 @@ const initialState: IRecommendState = {
   newAlbums: []
 }
 
-
 const Recommend = createSlice({
   name: 'recommend',
   initialState,
@@ -42,8 +48,11 @@ const Recommend = createSlice({
     },
     changeHotRecommendsAction(state, { payload }) {
       state.hotRecommends = payload
+    },
+    changeNewAlbumAction(state, { payload }) {
+      state.newAlbums = payload
     }
   }
 });
-export const { changeBannersAction, changeHotRecommendsAction } = Recommend.actions;
+export const { changeBannersAction, changeHotRecommendsAction, changeNewAlbumAction } = Recommend.actions;
 export default Recommend.reducer;

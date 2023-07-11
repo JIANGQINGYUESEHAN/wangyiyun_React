@@ -35,6 +35,7 @@ let AreaHeaderWrapper = styled.div`
   .sp {
     font-size: 20px;
     font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
+    cursor: pointer;
   }
   .keyword {
     display: flex;

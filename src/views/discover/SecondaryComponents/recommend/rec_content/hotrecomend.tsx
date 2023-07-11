@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { fetchRecommendBody } from '@/store/module/recommend'
 import HotRecommendItem from '../hotrecommenditem/hotrecommend_item'
 import { Link } from 'react-router-dom'
+import RecomendCarousel from '../recomendCarousel'
 
 interface IProps {
   children?: ReactNode
@@ -23,7 +24,6 @@ const HotRecommend: FC<IProps> = () => {
     }
   })
 
-  console.log(hotRecommends);
 
 
 
@@ -34,6 +34,7 @@ const HotRecommend: FC<IProps> = () => {
           title="热门推荐"
           keyWords={['华语', '流行', '摇滚', '民谣', '电子']}
           skipRoutes="/discover/playlist/"
+          router='/discover/playlist/'
         />
         <div className='HotRecommendbody'>
           {
@@ -53,7 +54,7 @@ const HotRecommend: FC<IProps> = () => {
             })
           }
         </div>
-
+        <RecomendCarousel />
       </div>
       <div className='right'>
         right
