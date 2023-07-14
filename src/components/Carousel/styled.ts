@@ -41,8 +41,8 @@ const CarouselWrapper = styled.div`
   .list {
     width: 180px;
     height: 100%;
-    background-color: aliceblue;
-    border: 1px solid red;
+    background-color: #f5f5f5 ;
+
     display: flex;
     justify-content: center;
   }
@@ -76,7 +76,6 @@ const CarouselWrapper = styled.div`
   }
   .top {
     flex: 1;
-
     align-items: center;
   }
   .top_span {

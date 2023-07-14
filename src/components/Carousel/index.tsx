@@ -3,6 +3,7 @@ import type { FC, ReactNode } from 'react';
 import CarouselWrapper from './styled';
 import { ImageSize } from '@/utils/Tool';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 interface IProps {
   children?: ReactNode;
@@ -10,6 +11,7 @@ interface IProps {
 }
 
 const CarouseL: FC<IProps> = (props) => {
+  const navigater = useNavigate()
   let { newAlbums } = props;
 
   const pageSize = 4; // 每个滑块显示的数据个数
@@ -33,6 +35,17 @@ const CarouseL: FC<IProps> = (props) => {
     setActiveIndex((prevIndex) => (prevIndex === 2 ? 0 : prevIndex + 1));
     console.log(activeIndex);
   }
+
+
+  function skipArtist(id: number) {
+    navigater(`/artist?id=${id}`)
+
+  }
+  function skipAlbum(id: number) {
+    console.log(id);
+    navigater(`/album?id=${id}`)
+
+  }
   return (
     <CarouselWrapper>
       <div className="carousel">
@@ -52,13 +65,13 @@ const CarouseL: FC<IProps> = (props) => {
                   return <li key={index} className='list'>
 
                     <div className='Item'>
-                      <img src={ImageSize((item as any).blurPicUrl, 100)} alt="" />
+                      <img src={ImageSize((item as any)?.blurPicUrl, 100)} alt="" />
                       <div className='span'>
                         <div className='top'>
-                          <span className='top_span'>{(item as any).name}</span>
+                          <span className='top_span' onClick={() => skipAlbum((item as any)?.id)}>{(item as any)?.name}</span>
                         </div>
                         <div className='bottom'>
-                          <span className='top_span' >{(item as any).artist.name}</span>
+                          <span className='top_span' onClick={() => skipArtist((item as any)?.artist.id)}>{(item as any)?.artist.name}</span>
                         </div>
                       </div>
                     </div>

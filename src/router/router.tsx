@@ -16,10 +16,15 @@ let Recommend = lazy(
 );
 
 let Rank = lazy(() => import('@/views/discover/SecondaryComponents/rank'));
-
+let Album = lazy(() => import('@/views/album'))
+let Artist = lazy(() => import('@/views/artist'))
 const routes: RouteObject[] = [
   {
     path: '/',
+    element: <Navigate to="/discover/recommend" />
+  },
+  {
+    path: '/discover',
     element: <Navigate to="/discover/recommend" />
   },
   {
@@ -63,7 +68,16 @@ const routes: RouteObject[] = [
   {
     path: '/download',
     element: <Download />
+  }, {
+    path: '/album',
+    element: <Album />
   }
+  , {
+    path: '/artist',
+    element: <Artist />
+  }
+
+
 ];
 
 export default routes;

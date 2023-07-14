@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 let AreaHeaderWrapper = styled.div`
   > .content {
+    margin-top: 10px;
     height: 40px;
     width: 720px;
     padding: 20px;

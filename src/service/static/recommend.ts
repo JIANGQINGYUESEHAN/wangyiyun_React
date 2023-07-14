@@ -21,6 +21,7 @@ export function getNewAlbum() {
     url: '/album/newest'
   })
 }
+
 export function getPlaylistDetail(id: number) {
   return hyRequest.get({
     url: '/playlist/detail',
@@ -38,3 +39,6 @@ export function getArtistList(limit = 30) {
     }
   })
 }
+
+//获取榜单信息
+

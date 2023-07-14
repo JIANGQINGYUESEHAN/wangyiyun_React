@@ -6,21 +6,21 @@ let RcContentWrapper = styled.div`
     width: 880px;
 
     display: flex;
-    border: 1px solid red;
+
   }
   .left {
     width: 720px;
   }
   .HotRecommendbody {
     width: 100%;
-
+background-color: #f5f5f5 ;
     display: flex;
     flex-wrap: wrap;
   }
   .item_rec {
     width: 180px;
     height: 200px;
-    border: 1px solid red;
+
     display: flex;
     justify-content: center;
     flex-direction: column;

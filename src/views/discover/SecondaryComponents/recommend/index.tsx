@@ -6,6 +6,7 @@ import { WYYDispatch } from '@/store'
 import Banner from './banner'
 import Hotrecomend from './rec_content/hotrecomend'
 
+
 interface IProps {
   children?: ReactNode
 }
@@ -18,6 +19,7 @@ const Recommend: FC<IProps> = () => {
     <Hotrecomend />
 
   </RecommendWrapper>
+
 
 }
 

@@ -8,6 +8,7 @@ import { fetchRecommendBody } from '@/store/module/recommend'
 import HotRecommendItem from '../hotrecommenditem/hotrecommend_item'
 import { Link } from 'react-router-dom'
 import RecomendCarousel from '../recomendCarousel'
+import List from '../list'
 
 interface IProps {
   children?: ReactNode
@@ -23,8 +24,6 @@ const HotRecommend: FC<IProps> = () => {
       hotRecommends: state.recommend.hotRecommends
     }
   })
-
-
 
 
   return < RcContentWrapper>
@@ -55,6 +54,12 @@ const HotRecommend: FC<IProps> = () => {
           }
         </div>
         <RecomendCarousel />
+        <Areaheader
+          title="榜单"
+
+          router='/discover/playlist/'
+        />
+        <List />
       </div>
       <div className='right'>
         right

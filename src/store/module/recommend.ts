@@ -1,4 +1,4 @@
-import { getBanners, getNewAlbum, getRecommendBody } from '@/service/static/recommend';
+import { getBanners, getNewAlbum, getPlaylistDetail, getRecommendBody } from '@/service/static/recommend';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchBannerDataAction = createAsyncThunk(
@@ -26,17 +26,56 @@ export const fetchRecommendAlbum = createAsyncThunk('album', async (arg, { dispa
 
 })
 
+//榜单
+let promise: Promise<any>[] = []
+const ids = [19723756, 3779629, 2884035]
+export const fetchTopList = createAsyncThunk('toplist', async (args, { dispatch }) => {
+  // for (let i of ids) {
+  //   promise.push(getPlaylistDetail(i))
+  // }
+
+  // await Promise.all(promise).then((res) => {
+  //   let ranking: any[] = []
+
+
+
+  //   ranking = res.filter((item) => item.playlist)
+  //     .map((item) => item.playlist)
+  //   dispatch(changeTopListAction(ranking))
+
+  // })
+  const promises: Promise<any>[] = []
+  for (const id of ids) {
+    promises.push(getPlaylistDetail(id))
+  }
+
+  Promise.all(promises).then((res) => {
+    const playlists = res
+      .filter((item) => item.playlist)
+      .map((item) => item.playlist)
+    dispatch(changeTopListAction(playlists))
+  })
+
+
+
+
+
+
+})
+
 
 interface IRecommendState {
   banners: any[]
   hotRecommends: any[]
   newAlbums: any[]
+  ranking: any[]
 }
 
 const initialState: IRecommendState = {
   banners: [],
   hotRecommends: [],
-  newAlbums: []
+  newAlbums: [],
+  ranking: []
 }
 
 const Recommend = createSlice({
@@ -51,8 +90,11 @@ const Recommend = createSlice({
     },
     changeNewAlbumAction(state, { payload }) {
       state.newAlbums = payload
+    },
+    changeTopListAction(state, { payload }) {
+      state.ranking = payload
     }
   }
 });
-export const { changeBannersAction, changeHotRecommendsAction, changeNewAlbumAction } = Recommend.actions;
+export const { changeBannersAction, changeHotRecommendsAction, changeNewAlbumAction, changeTopListAction } = Recommend.actions;
 export default Recommend.reducer;

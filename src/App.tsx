@@ -11,7 +11,7 @@ export default memo(function App() {
       <div>
         <Suspense>{useRoutes(routes)}</Suspense>
       </div>
-
+      <Footer />
     </div>
   );
 });
