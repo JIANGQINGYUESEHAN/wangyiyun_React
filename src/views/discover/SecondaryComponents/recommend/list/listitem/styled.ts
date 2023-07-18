@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const ListItemWrapper = styled.div`
->.content{
+.content{
  width: 100%;
  display: flex;
  flex-direction: column;
  align-items: center;
- height: auto;
+ height: 100%;
 }
 .top{
   display: flex;

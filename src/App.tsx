@@ -8,7 +8,7 @@ export default memo(function App() {
     <div>
       <Head />
 
-      <div>
+      <div  >
         <Suspense>{useRoutes(routes)}</Suspense>
       </div>
       <Footer />

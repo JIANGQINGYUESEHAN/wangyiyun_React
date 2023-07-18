@@ -25,7 +25,7 @@ const List: FC<IProps> = () => {
     }
   }, WYYShallowEqual)
 
-  console.log(ranking);
+
 
   return (
     <ListWrapper>

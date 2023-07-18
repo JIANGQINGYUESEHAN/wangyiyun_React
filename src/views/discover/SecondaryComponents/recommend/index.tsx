@@ -5,6 +5,7 @@ import { fetchBannerDataAction } from '@/store/module/recommend'
 import { WYYDispatch } from '@/store'
 import Banner from './banner'
 import Hotrecomend from './rec_content/hotrecomend'
+import Footer from '@/components/footer'
 
 
 interface IProps {
@@ -17,6 +18,7 @@ const Recommend: FC<IProps> = () => {
     {/* 轮播图 */}
     <Banner />
     <Hotrecomend />
+
 
   </RecommendWrapper>
 

@@ -1,0 +1,34 @@
+[
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat -170px -5px`",
+    "url": "https://developer.music.163.com/st/developer"
+  },
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat -5px -170px`",
+    "url": "https://developer.music.163.com/st/developer"
+  },
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat -5px -60px;`",
+    "url": "https://developer.music.163.com/st/developer"
+  },
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat 0px 0px`",
+    "url": "https://developer.music.163.com/st/developer"
+  },
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat -115px -5px;`",
+    "url": "https://developer.music.163.com/st/developer"
+  },
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat --115px -115px`",
+    "url": "https://developer.music.163.com/st/developer"
+  },
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat --115px -115px`",
+    "url": "https://developer.music.163.com/st/developer"
+  },
+  {
+    "bag": "url(${require('@/assets/img/footer_enter _new2.png')}) no-repeat -170px -115px;`",
+    "url": "https://developer.music.163.com/st/developer"
+  }
+]

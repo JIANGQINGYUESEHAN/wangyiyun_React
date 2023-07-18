@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { FolderAddOutlined, PlayCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Navigate, useNavigate } from 'react-router-dom';
+import Footer from '@/components/footer';
 
 interface IProps {
   children?: ReactNode
@@ -88,7 +89,8 @@ const ListItem: FC<IProps> = (props) => {
       </ul>
 
     </div>
-  </div></ListItemWrapper>
+  </div>
+  </ListItemWrapper>
 }
 
 export default memo(ListItem)

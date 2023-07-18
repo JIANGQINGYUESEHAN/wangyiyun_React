@@ -60,6 +60,7 @@ const HotRecommend: FC<IProps> = () => {
           router='/discover/playlist/'
         />
         <List />
+
       </div>
       <div className='right'>
         right
